@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Hashlock-Tech/hashlock",
   "title": "Hashlock — Intent Trading Protocol",
-  "description": "Intent-based crypto exchange protocol by Hashlock-Tech. Create, commit, validate, and parse trading intents for swapping ETH, ERC20 tokens, and ERC721 NFTs across EVM chains (Ethereum, Polygon, Arbitrum, Base) with sealed-bid privacy and KYC attestation tiers. Not the cryptographic hashlock primitive used in HTLCs.",
+  "description": "Hashlock-Tech intent protocol — swap crypto via sealed-bid intents across EVM chains.",
   "websiteUrl": "https://hashlock.duckdns.org",
   "repository": {
     "url": "https://github.com/Hashlock-Tech/hashlock-mcp-server",
