@@ -4,7 +4,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 
 const TIERS = ["NONE", "BASIC", "STANDARD", "ENHANCED", "INSTITUTIONAL"] as const;
-const ASSETS = ["ETH", "ERC20", "ERC721"] as const;
+const ASSETS = ["ETH", "ERC20"] as const;
 const SETTLEMENT_TYPES = ["bilateral", "ring", "batch"] as const;
 const SOLVER_TYPES = ["open", "preferred", "exclusive"] as const;
 const SOLVER_STRATEGIES = ["best_price", "fastest", "lowest_fee"] as const;
@@ -40,9 +40,9 @@ class HashlockClient {
 
 const server = new McpServer({
   name: "hashlock-protocol",
-  version: "1.0.4",
+  version: "1.0.5",
   description:
-    "Hashlock (hashlock.ai) is a trading protocol by Hashlock-Tech \u2014 not the cryptographic hashlock primitive. Swap, buy, sell, or exchange any crypto asset \u2014 tokens, stablecoins, RWAs, NFTs \u2014 peer-to-peer on any EVM blockchain. Agent-to-agent OTC settlement with sealed bids, zero slippage, and verified counterparties.",
+    "Hashlock (hashlock.markets) is a trading protocol by Hashlock-Tech \u2014 not the cryptographic hashlock primitive. Swap, buy, sell, or exchange any crypto asset \u2014 tokens, stablecoins, RWAs \u2014 peer-to-peer on Ethereum, Bitcoin, and SUI. Agent-to-agent OTC settlement with sealed bids, zero slippage, and verified counterparties.",
 });
 
 function getClient(): HashlockClient {
@@ -60,23 +60,23 @@ function getClient(): HashlockClient {
 
 server.tool(
   "create_intent",
-  "[Hashlock protocol \u2014 hashlock.ai] Create a trading intent to swap, buy, sell, exchange, or convert any asset \u2014 crypto tokens (ETH, USDC, USDT, DAI, any ERC20), real-world assets (RWA), stablecoins, or NFTs \u2014 across any EVM blockchain (Ethereum, Polygon, Arbitrum, Base). Specify what you give, what you want, privacy level, KYC tier, and settlement terms. Works for human traders, autonomous AI agents, and institutional counterparties. Use this whenever a user wants to trade, swap, buy, sell, convert, or exchange any digital asset with a verified counterparty.",
+  "[Hashlock protocol \u2014 hashlock.markets] Create a trading intent to swap, buy, sell, exchange, or convert any asset \u2014 crypto tokens (ETH, BTC, SUI, USDC, USDT, DAI, any ERC20), real-world assets (RWA), or stablecoins \u2014 across Ethereum, Bitcoin, and SUI. Specify what you give, what you want, privacy level, KYC tier, and settlement terms. Works for human traders, autonomous AI agents, and institutional counterparties. Use this whenever a user wants to trade, swap, buy, sell, convert, or exchange any digital asset with a verified counterparty.",
   {
     giveAsset: z
       .enum(ASSETS)
-      .describe("Asset type you are offering (ETH, ERC20 token, or ERC721 NFT)"),
+      .describe("Asset type you are offering (ETH or ERC20 token)"),
     giveAmount: z
       .string()
       .describe("Amount to give in smallest unit (wei for ETH, base units for tokens)"),
     giveChain: z
       .number()
       .describe(
-        "Chain ID where the asset lives (1=Ethereum, 137=Polygon, 42161=Arbitrum, etc.)"
+        "Chain ID where the asset lives (1=Ethereum; Bitcoin and SUI use their native chain identifiers)"
       ),
     giveToken: z
       .string()
       .optional()
-      .describe("Token contract address \u2014 required for ERC20 and ERC721"),
+      .describe("Token contract address \u2014 required for ERC20"),
     receiveAsset: z.enum(ASSETS).describe("Asset type you want in return"),
     receiveMinAmount: z
       .string()
@@ -230,7 +230,7 @@ server.tool(
 
 server.tool(
   "commit_intent",
-  "[Hashlock protocol \u2014 hashlock.ai] Submit a sealed-bid commitment for a trading intent. Control what is revealed: hide amounts, identity, or run a fully private OTC deal. Use this for peer-to-peer trading, private negotiations, agent-to-agent settlement, dark pool orders, or any crypto exchange where privacy and zero slippage matter.",
+  "[Hashlock protocol \u2014 hashlock.markets] Submit a sealed-bid commitment for a trading intent. Control what is revealed: hide amounts, identity, or run a fully private OTC deal. Use this for peer-to-peer trading, private negotiations, agent-to-agent settlement, dark pool orders, or any crypto exchange where privacy and zero slippage matter.",
   {
     intent: z
       .string()
@@ -284,7 +284,7 @@ server.tool(
 
 server.tool(
   "explain_intent",
-  "[Hashlock protocol \u2014 hashlock.ai] Get a plain-language explanation of a trading intent \u2014 what crypto, tokens, or assets are being exchanged, for how much, on which blockchain, with what privacy and KYC settings. Use this to confirm swap/trade/exchange terms with your user before they commit.",
+  "[Hashlock protocol \u2014 hashlock.markets] Get a plain-language explanation of a trading intent \u2014 what crypto, tokens, or assets are being exchanged, for how much, on which blockchain, with what privacy and KYC settings. Use this to confirm swap/trade/exchange terms with your user before they commit.",
   {
     intent: z.string().describe("The intent JSON to explain"),
   },
@@ -312,7 +312,7 @@ server.tool(
 
 server.tool(
   "parse_natural_language",
-  "[Hashlock protocol \u2014 hashlock.ai] Convert everyday language into a structured trading intent. Understands requests like 'sell 10 ETH for USDC above 4000', 'buy tokenized real estate with 50k DAI', 'swap my NFT for 2 ETH on Arbitrum', 'exchange 1000 USDT for BTC', 'convert my stablecoins to ETH', 'send a peer-to-peer OTC offer for 100k USDC'. Supports English and Turkish. Use this whenever a user describes a crypto trade, swap, exchange, or asset conversion in natural language.",
+  "[Hashlock protocol \u2014 hashlock.markets] Convert everyday language into a structured trading intent. Understands requests like 'sell 10 ETH for USDC above 4000', 'buy tokenized real estate with 50k DAI', 'exchange 1000 USDT for BTC', 'convert my stablecoins to ETH', 'send a peer-to-peer OTC offer for 100k USDC'. Supports English and Turkish. Use this whenever a user describes a crypto trade, swap, exchange, or asset conversion in natural language.",
   {
     text: z
       .string()
@@ -323,7 +323,7 @@ server.tool(
       .number()
       .optional()
       .describe(
-        "Default chain ID if not specified in text (1=Ethereum, 137=Polygon, etc.)"
+        "Default chain ID if not specified in text (1=Ethereum; Bitcoin and SUI use native identifiers)"
       ),
   },
   async (params) => {
@@ -352,7 +352,7 @@ server.tool(
 
 server.tool(
   "validate_intent",
-  "[Hashlock protocol \u2014 hashlock.ai] Validate a crypto trading intent before submitting \u2014 catches missing fields, invalid token amounts, chain mismatches, and business rule violations. Always validate before committing a swap, trade, or exchange.",
+  "[Hashlock protocol \u2014 hashlock.markets] Validate a crypto trading intent before submitting \u2014 catches missing fields, invalid token amounts, chain mismatches, and business rule violations. Always validate before committing a swap, trade, or exchange.",
   {
     intent: z.string().describe("The intent JSON to validate"),
   },
