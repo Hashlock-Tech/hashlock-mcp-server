@@ -1,3 +1,11 @@
 node_modules/
 dist/
 *.tsbuildinfo
+
+# mcp-publisher auth tokens — NEVER commit
+.mcpregistry_github_token
+.mcpregistry_registry_token
+
+# Publisher binaries (downloaded per-machine)
+mcp-publisher.exe
+mcp-publisher.tar.gz

@@ -1,17 +1,19 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Hashlock-Tech/hashlock",
-  "description": "Swap any asset — crypto, RWA, stablecoins — with private sealed bids and verified counterparties.",
+  "title": "Hashlock — Intent Trading Protocol",
+  "description": "Intent-based crypto exchange protocol by Hashlock-Tech. Create, commit, validate, and parse trading intents for swapping ETH, ERC20 tokens, and ERC721 NFTs across EVM chains (Ethereum, Polygon, Arbitrum, Base) with sealed-bid privacy and KYC attestation tiers. Not the cryptographic hashlock primitive used in HTLCs.",
+  "websiteUrl": "https://hashlock.duckdns.org",
   "repository": {
     "url": "https://github.com/Hashlock-Tech/hashlock-mcp-server",
     "source": "github"
   },
-  "version": "1.0.2",
+  "version": "1.0.4",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "hashlock-mcp-server",
-      "version": "1.0.2",
+      "version": "1.0.4",
       "transport": {
         "type": "stdio"
       },
@@ -31,6 +33,12 @@
           "isSecret": true
         }
       ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://hashlock.duckdns.org/mcp"
     }
   ]
 }
