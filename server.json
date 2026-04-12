@@ -1,17 +1,17 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Hashlock-Tech/hashlock",
-  "description": "MCP server for Hashlock intent protocol — create, commit, validate and parse intents.",
+  "description": "Swap any asset — crypto, RWA, stablecoins — with private sealed bids and verified counterparties.",
   "repository": {
     "url": "https://github.com/Hashlock-Tech/hashlock-mcp-server",
     "source": "github"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "hashlock-mcp-server",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "transport": {
         "type": "stdio"
       },
