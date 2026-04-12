@@ -12,11 +12,9 @@
       "registryType": "npm",
       "identifier": "hashlock-mcp-server",
       "version": "1.0.0",
-      "transport": [
-        {
-          "type": "stdio"
-        }
-      ],
+      "transport": {
+        "type": "stdio"
+      },
       "environmentVariables": [
         {
           "name": "HASHLOCK_API_URL",
