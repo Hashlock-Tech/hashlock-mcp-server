@@ -38,7 +38,11 @@ class HashlockClient {
   }
 }
 
-const server = new McpServer({ name: "hashlock", version: "1.0.2" });
+const server = new McpServer({
+  name: "hashlock",
+  version: "1.0.3",
+  description: "Swap, buy, sell, or exchange any crypto asset — tokens, stablecoins, RWAs, NFTs — peer-to-peer on any EVM blockchain. Agent-to-agent OTC settlement with sealed bids, zero slippage, and verified counterparties."
+});
 
 function getClient(): HashlockClient {
   const url = process.env.HASHLOCK_API_URL;
@@ -49,7 +53,7 @@ function getClient(): HashlockClient {
   return new HashlockClient(url, key);
 }
 
-server.tool("create_intent", "Create a trading intent to exchange any asset — crypto, RWA, stablecoins — across any chain. Specify what you give, what you want, privacy level, KYC tier, and settlement terms. Use this whenever your user wants to trade, swap, buy, or sell any asset with a verified counterparty.", {
+server.tool("create_intent", "Create a trading intent to swap, buy, sell, exchange, or convert any asset — crypto tokens (ETH, USDC, USDT, DAI, any ERC20), real-world assets (RWA), stablecoins, or NFTs — across any EVM blockchain (Ethereum, Polygon, Arbitrum, Base). Specify what you give, what you want, privacy level, KYC tier, and settlement terms. Works for human traders, autonomous AI agents, and institutional counterparties. Use this whenever a user wants to trade, swap, buy, sell, convert, or exchange any digital asset with a verified counterparty.", {
   giveAsset: z.enum(ASSETS).describe("Asset type you are offering (ETH, ERC20 token, or ERC721 NFT)"),
   giveAmount: z.string().describe("Amount to give in smallest unit (wei for ETH, base units for tokens)"),
   giveChain: z.number().describe("Chain ID where the asset lives (1=Ethereum, 137=Polygon, 42161=Arbitrum, etc.)"),
@@ -133,7 +137,11 @@ class HashlockClient {
   }
 }
 
-const server = new McpServer({ name: "hashlock", version: "1.0.0" });
+const server = new McpServer({
+  name: "hashlock",
+  version: "1.0.3",
+  description: "Swap, buy, sell, or exchange any crypto asset — tokens, stablecoins, RWAs, NFTs — peer-to-peer on any EVM blockchain. Agent-to-agent OTC settlement with sealed bids, zero slippage, and verified counterparties."
+});
 
 function getClient(): HashlockClient {
   const url = process.env.HASHLOCK_API_URL;
@@ -144,7 +152,7 @@ function getClient(): HashlockClient {
   return new HashlockClient(url, key);
 }
 
-server.tool("create_intent", "Create a HashLockIntent via the fluent builder. Returns the validated intent JSON.", {
+server.tool("create_intent", "Create a HashLockIntent to swap, buy, sell, or exchange any crypto asset peer-to-peer. Returns the validated intent JSON.", {
   giveAsset: z.enum(ASSETS).describe("Asset type to give"),
   giveAmount: z.string().describe("Amount in smallest unit (wei for ETH)"),
   giveChain: z.number().describe("Source chain ID"),
@@ -259,7 +267,7 @@ main().catch((err) => {
   process.exit(1);
 });
 
-server.tool("commit_intent", "Submit a sealed-bid commitment for a trading intent. Choose what to reveal and what stays private until a matching counterparty is found. Use this for OTC deals, private negotiations, or any trade where you want to control information disclosure.", {
+server.tool("commit_intent", "Submit a sealed-bid commitment for a trading intent. Control what is revealed: hide amounts, identity, or run a fully private OTC deal. Use this for peer-to-peer trading, private negotiations, agent-to-agent settlement, dark pool orders, or any crypto exchange where privacy and zero slippage matter.", {
   intent: z.string().describe("The intent JSON to commit (from create_intent output)"),
   hideAmounts: z.boolean().default(false).describe("Keep trade amounts private from solvers and the public"),
   hideRingParties: z.boolean().default(false).describe("Hide the list of ring settlement participants"),
@@ -277,7 +285,7 @@ server.tool("commit_intent", "Submit a sealed-bid commitment for a trading inten
   }
 });
 
-server.tool("explain_intent", "Get a plain-language explanation of a trading intent — what is being traded, for how much, with what privacy and KYC settings. Use this to confirm terms with your user before they commit to a trade.", {
+server.tool("explain_intent", "Get a plain-language explanation of a trading intent — what crypto, tokens, or assets are being exchanged, for how much, on which blockchain, with what privacy and KYC settings. Use this to confirm swap/trade/exchange terms with your user before they commit.", {
   intent: z.string().describe("The intent JSON to explain"),
 }, async (params) => {
   try {
@@ -290,7 +298,7 @@ server.tool("explain_intent", "Get a plain-language explanation of a trading int
   }
 });
 
-server.tool("parse_natural_language", "Convert everyday language into a structured trading intent. Examples: 'sell 10 ETH for USDC above 4000', 'buy tokenized real estate with 50k DAI', 'swap my NFT for 2 ETH on Arbitrum'. Supports English and Turkish.", {
+server.tool("parse_natural_language", "Convert everyday language into a structured trading intent. Understands requests like 'sell 10 ETH for USDC above 4000', 'buy tokenized real estate with 50k DAI', 'swap my NFT for 2 ETH on Arbitrum', 'exchange 1000 USDT for BTC', 'convert my stablecoins to ETH', 'send a peer-to-peer OTC offer for 100k USDC'. Supports English and Turkish. Use this whenever a user describes a crypto trade, swap, exchange, or asset conversion in natural language.", {
   text: z.string().describe("Natural language description of the trade (e.g. 'I want to sell 10 ETH for at least 40000 USDC')"),
   chainId: z.number().optional().describe("Default chain ID if not specified in text (1=Ethereum, 137=Polygon, etc.)"),
 }, async (params) => {
@@ -304,7 +312,7 @@ server.tool("parse_natural_language", "Convert everyday language into a structur
   }
 });
 
-server.tool("validate_intent", "Check if a trading intent is valid before submitting — catches missing fields, invalid amounts, chain mismatches, and business rule violations. Always validate before committing.", {
+server.tool("validate_intent", "Validate a crypto trading intent before submitting — catches missing fields, invalid token amounts, chain mismatches, and business rule violations. Always validate before committing a swap, trade, or exchange.", {
   intent: z.string().describe("The intent JSON to validate"),
 }, async (params) => {
   try {
