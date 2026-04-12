@@ -2,18 +2,18 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Hashlock-Tech/hashlock",
   "title": "Hashlock — Intent Trading Protocol",
-  "description": "Hashlock-Tech intent protocol — swap crypto via sealed-bid intents across EVM chains.",
-  "websiteUrl": "https://hashlock.duckdns.org",
+  "description": "Hashlock-Tech intent protocol — sealed-bid crypto swaps on Ethereum, Bitcoin, and SUI.",
+  "websiteUrl": "https://hashlock.markets",
   "repository": {
     "url": "https://github.com/Hashlock-Tech/hashlock-mcp-server",
     "source": "github"
   },
-  "version": "1.0.4",
+  "version": "1.0.5",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "hashlock-mcp-server",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "transport": {
         "type": "stdio"
       },
@@ -38,7 +38,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://hashlock.duckdns.org/mcp"
+      "url": "https://hashlock.markets/mcp"
     }
   ]
 }
