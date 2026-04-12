@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.hashlock-tech/hashlock",
+  "name": "io.github.Hashlock-Tech/hashlock",
   "description": "MCP server for Hashlock intent protocol — create, commit, validate and parse intents.",
   "repository": {
     "url": "https://github.com/Hashlock-Tech/hashlock-mcp-server",
