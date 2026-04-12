@@ -4,6 +4,7 @@
   "description": "MCP server for Hashlock intent protocol — create, commit, validate, explain, and parse trading intents with attestation-based counterparty verification",
   "license": "MIT",
   "author": "Hashlock Technologies",
+  "mcpName": "io.github.hashlock-tech/hashlock",
   "repository": {
     "type": "git",
     "url": "https://github.com/Hashlock-Tech/hashlock-mcp-server"
