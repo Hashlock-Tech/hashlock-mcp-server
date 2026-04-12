@@ -1,7 +1,7 @@
 {
   "name": "hashlock-mcp-server",
-  "version": "1.0.1",
-  "description": "MCP server for Hashlock intent protocol — create, commit, validate, explain, and parse trading intents with attestation-based counterparty verification",
+  "version": "1.0.2",
+  "description": "Swap any asset — crypto, RWA, stablecoins — with private sealed bids and verified counterparties via Hashlock",
   "license": "MIT",
   "author": "Hashlock Technologies",
   "mcpName": "io.github.Hashlock-Tech/hashlock",
@@ -40,6 +40,11 @@
     "trading",
     "attestation",
     "kyc",
-    "ethereum"
+    "ethereum",
+    "rwa",
+    "stablecoins",
+    "otc",
+    "sealed-bid",
+    "swap"
   ]
 }
