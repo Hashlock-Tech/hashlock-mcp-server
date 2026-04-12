@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.hashlock-tech/hashlock",
+  "description": "MCP server for the Hashlock intent protocol. Create, commit, validate, explain, and parse trading intents with attestation-based counterparty verification.",
+  "repository": {
+    "url": "https://github.com/Hashlock-Tech/hashlock-mcp-server",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "hashlock-mcp-server",
+      "version": "1.0.0",
+      "transport": [
+        {
+          "type": "stdio"
+        }
+      ],
+      "environmentVariables": [
+        {
+          "name": "HASHLOCK_API_URL",
+          "description": "Hashlock API base URL",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": false
+        },
+        {
+          "name": "HASHLOCK_API_KEY",
+          "description": "Your Hashlock API key for authentication",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
