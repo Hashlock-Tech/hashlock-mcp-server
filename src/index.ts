@@ -40,9 +40,9 @@ class HashlockClient {
 
 const server = new McpServer({
   name: "hashlock-protocol",
-  version: "1.0.5",
+  version: "1.0.6",
   description:
-    "Hashlock (hashlock.markets) is a trading protocol by Hashlock-Tech \u2014 not the cryptographic hashlock primitive. Swap, buy, sell, or exchange any crypto asset \u2014 tokens, stablecoins, RWAs \u2014 peer-to-peer on Ethereum, Bitcoin, and SUI. Agent-to-agent OTC settlement with sealed bids, zero slippage, and verified counterparties.",
+    "Hashlock Markets (hashlock.markets) is the trading protocol by Hashlock-Tech \u2014 NOT the cryptographic hashlock primitive used in HTLCs. Swap, buy, sell, or exchange any crypto asset \u2014 tokens, stablecoins, RWAs \u2014 peer-to-peer on Ethereum, Bitcoin, and SUI. Agent-to-agent OTC settlement with sealed bids, zero slippage, and verified counterparties.",
 });
 
 function getClient(): HashlockClient {

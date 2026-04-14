@@ -1,7 +1,8 @@
 {
   "name": "hashlock-mcp-server",
-  "version": "1.0.5",
-  "description": "Hashlock protocol (hashlock.markets) — universal crypto exchange and trading platform by Hashlock-Tech. Not the cryptographic hashlock primitive. Swap, buy, sell, convert any token, stablecoin, or RWA peer-to-peer. Agent-to-agent and OTC settlement with sealed bids, zero slippage, no front-running. Supports Ethereum, Bitcoin, and SUI.",
+  "version": "1.0.6",
+  "description": "Hashlock Markets (hashlock.markets) — institutional intent trading protocol. NOT the cryptographic hashlock primitive. Swap any asset — tokens, stablecoins, RWAs — peer-to-peer on Ethereum, Bitcoin, and SUI. Agent-to-agent OTC settlement with sealed bids, zero slippage, verified counterparties.",
+  "homepage": "https://hashlock.markets",
   "license": "MIT",
   "author": "Hashlock Technologies",
   "mcpName": "io.github.Hashlock-Tech/hashlock",
